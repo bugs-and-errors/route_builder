@@ -56,7 +56,7 @@ const App = () => {
   return (
     <div>
 
-      <button onClick={toggleModal}>ADD BLOCK</button>
+      <button onClick={toggleModal} className="btn">ADD BLOCK</button>
 
       {openModal && <Modals toggleModal={toggleModal} />}
 

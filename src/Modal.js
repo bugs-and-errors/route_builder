@@ -1,22 +1,26 @@
-import React from 'react'
+import { useState } from 'react'
 
 
 export default function Modals({ toggleModal }) {
 
-  const handleOk = () => { }
+  const [Id, setId] = useState("")
+  const [NodeType, setNodeType] = useState("")
+
+  // const handleOk = () => { }
 
   const handleCancel = () => {
-    console.log("fucck")
     toggleModal()
+    setId("")
+    setNodeType("")
   }
 
   return (
     <div className="modal_design_back">
       <div className="modal">
         <h3 className="modal-title">Add Node</h3>
-        <input placeholder="Node ID/Name" className="modal_ip" />
+        <input placeholder="Node ID/Name" className="modal_ip" value={Id} onChange={e => setId(e.target.value)} />
 
-        <select placeholder="Node Type" className="modal_ip">
+        <select placeholder="Node Type" className="modal_ip" value={NodeType} onChange={e => setNodeType(e.target.value)}>
           <option>Start</option>
           <option>Node</option>
           <option>End</option>
