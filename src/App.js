@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactFlow, { removeElements, addEdge } from 'react-flow-renderer';
-import Modal from "antd"
+import Modals from "./Modal"
 
 // const initialElements = [
 //   {
@@ -27,6 +27,16 @@ import Modal from "antd"
 //   }
 // ];
 
+
+// const ele = [...elements]
+//         ele.push({
+//           id: '3',
+//           type: 'output',
+//           data: { label: '69' },
+//           position: { x: 100, y: 150 },
+//         })
+//         setElements(ele)
+
 const App = () => {
   const [elements, setElements] = useState([]);
   const [openModal, setopenModal] = useState(false)
@@ -38,12 +48,17 @@ const App = () => {
 
   console.log(elements)
 
+  const toggleModal = () => {
+    setopenModal(!openModal)
+  }
 
 
   return (
-    <div style={{ height: '100vh' }}>
+    <div>
 
-      <button onClick={() => setopenModal(true)}>ADD BLOCK</button>
+      <button onClick={toggleModal}>ADD BLOCK</button>
+
+      {openModal && <Modals toggleModal={toggleModal} />}
 
       <ReactFlow
         elements={elements}
