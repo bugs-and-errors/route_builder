@@ -17,12 +17,28 @@ const initialElements = [
 
 const App = () => {
   const [elements, setElements] = useState(initialElements);
+
   const onElementsRemove = (elementsToRemove) =>
     setElements((els) => removeElements(elementsToRemove, els));
+
   const onConnect = (params) => setElements((els) => addEdge(params, els));
 
+  console.log(elements)
+
+
+
   return (
-    <div style={{ height: 300 }}>
+    <div style={{ height: '100vh' }}>
+      <button onClick={() => {
+        const ele = [...elements]
+        ele.push({
+          id: '3',
+          type: 'output',
+          data: { label: '69' },
+          position: { x: 100, y: 150 },
+        })
+        setElements(ele)
+      }}>ADD BLOCK</button>
       <ReactFlow
         elements={elements}
         onElementsRemove={onElementsRemove}
