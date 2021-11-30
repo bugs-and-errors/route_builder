@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import { IoCloseCircleOutline } from "react-icons/io5"
 
 export default function Modals({ toggleModal, push }) {
 
@@ -15,7 +15,7 @@ export default function Modals({ toggleModal, push }) {
           data: {
             label: <div className="split-box">
               {Id}
-              <button className="remove_btn">x</button>
+              <button className="remove_btn"><IoCloseCircleOutline /></button>
             </div>
           },
           position: { x: 0, y: 0 },
@@ -25,9 +25,9 @@ export default function Modals({ toggleModal, push }) {
           id: Id,
           type: 'output',
           data: {
-            label: <div>
+            label: <div className="split-box">
               {Id}
-              <button className="remove_btn">x</button>
+              <button className="remove_btn"><IoCloseCircleOutline /></button>
             </div>
           },
           position: { x: 0, y: 0 },
@@ -36,9 +36,9 @@ export default function Modals({ toggleModal, push }) {
         push({
           id: Id,
           data: {
-            label: <div>
+            label: <div className="split-box">
               {Id}
-              <button className="remove_btn">x</button>
+              <button className="remove_btn"><IoCloseCircleOutline /></button>
             </div>
           },
           position: { x: 0, y: 0 },
