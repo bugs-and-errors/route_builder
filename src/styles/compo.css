@@ -18,11 +18,12 @@
 
 .modal{
   background:white;
-  width:90vw;
+  width:50vw;
   height:50vh;
-  padding:15pt;
   border-radius: 5pt;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -42,4 +43,22 @@
 .btn:hover{
   border: 1px solid #40A9FF;
   color:#40A9FF
+}
+
+.modal_ip{
+  padding: 10pt;
+  width: 80%;
+  margin: 10pt auto;
+  border-radius: 5pt;
+  outline: none;
+  border: 1px solid rgba(0,0,0,0.3);
+}
+
+.modal-title{
+  font-family: sans-serif;
+  font-size:13px;
+  width: 100%;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  padding:10pt;
+  margin-bottom: 20pt;
 }
