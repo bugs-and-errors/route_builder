@@ -56,7 +56,10 @@ const App = () => {
   return (
     <div>
 
-      <button onClick={toggleModal} className="btn">ADD BLOCK</button>
+      <button
+        onClick={toggleModal}
+        style={{ width: "fit-content" }}
+        className="btn">ADD BLOCK</button>
 
       {openModal && <Modals toggleModal={toggleModal} />}
 

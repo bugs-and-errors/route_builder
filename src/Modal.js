@@ -26,6 +26,7 @@ export default function Modals({ toggleModal }) {
           <option>End</option>
         </select>
 
+        <button className="btn" onClick={handleCancel} style={{ right: "60pt" }}>OK</button>
         <button className="btn" onClick={handleCancel}>Close</button>
       </div>
     </div>
