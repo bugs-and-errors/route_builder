@@ -51,9 +51,8 @@ export default function Modals({ toggleModal, push, Remove }) {
           position: { x: 0, y: 0 },
         })
       }
-
+      handleCancel()
     }
-    handleCancel()
   }
 
   const handleCancel = () => {
@@ -69,6 +68,7 @@ export default function Modals({ toggleModal, push, Remove }) {
         <input placeholder="Node ID/Name" className="modal_ip" value={Id} onChange={e => setId(e.target.value)} />
 
         <select placeholder="Node Type" className="modal_ip" value={NodeType} onChange={e => setNodeType(e.target.value)}>
+          {NodeType === "" && <option>Select a Node Type</option>}
           <option value="start">Start</option>
           <option value="node">Node</option>
           <option value="end">End</option>
