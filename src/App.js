@@ -52,6 +52,11 @@ const App = () => {
     setElements(ele)
   }
 
+  const Remove = (id) => {
+    const ele = [...elements]
+    setElements(ele?.filter(e => e?.id !== id))
+  }
+
   return (
     <div style={{ height: "100vh" }}>
 
@@ -60,7 +65,7 @@ const App = () => {
         style={{ width: "fit-content", position: "relative", margin: "10pt" }}
         className="btn">ADD BLOCK</button>
 
-      {openModal && <Modals toggleModal={toggleModal} push={push} />}
+      {openModal && <Modals toggleModal={toggleModal} push={push} Remove={Remove} />}
 
       {!openModal &&
         <ReactFlow
