@@ -3,12 +3,12 @@ import ReactFlow, { removeElements, addEdge } from 'react-flow-renderer';
 import Modals from "./Modal"
 
 // const initialElements = [
-//   {
-//     id: '1',
-//     type: 'input',
-//     data: { label: 'Input Node' },
-//     position: { x: 0, y: 0 },
-//   },
+// {
+//   id: '1',
+//   type: 'input',
+//   data: { label: 'Input Node' },
+//   position: { x: 0, y: 0 },
+// },
 //   {
 //     id: '2',
 //     data: { label: 'Another Node' },
@@ -28,14 +28,7 @@ import Modals from "./Modal"
 // ];
 
 
-// const ele = [...elements]
-//         ele.push({
-//           id: '3',
-//           type: 'output',
-//           data: { label: '69' },
-//           position: { x: 100, y: 150 },
-//         })
-//         setElements(ele)
+
 
 const App = () => {
   const [elements, setElements] = useState([]);
@@ -52,16 +45,22 @@ const App = () => {
     setopenModal(!openModal)
   }
 
+  const push = (e) => {
+    console.log(e)
+    const ele = [...elements]
+    ele.push(e)
+    setElements(ele)
+  }
 
   return (
-    <div>
+    <div style={{ height: "100vh" }}>
 
       <button
         onClick={toggleModal}
-        style={{ width: "fit-content" }}
+        style={{ width: "fit-content", position: "relative", margin: "10pt" }}
         className="btn">ADD BLOCK</button>
 
-      {openModal && <Modals toggleModal={toggleModal} />}
+      {openModal && <Modals toggleModal={toggleModal} push={push} />}
 
       <ReactFlow
         elements={elements}

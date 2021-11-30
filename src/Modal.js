@@ -7,19 +7,19 @@ export default function Modals({ toggleModal, push }) {
   const [NodeType, setNodeType] = useState("")
 
   const handleOk = () => {
-    if (NodeType === "start") {
-      push({
-        id: Id,
-        type: 'input',
-        data: {
-          label: <div>
-            {Id}
-            <button>x</button>
-          </div>
-        },
-        position: { x: 0, y: 0 },
-      })
-    }
+
+    push({
+      id: Id,
+      type: 'input',
+      data: {
+        label: <div>
+          {Id}
+          <button>x</button>
+        </div>
+      },
+      position: { x: 0, y: 0 },
+    })
+
     handleCancel()
   }
 
