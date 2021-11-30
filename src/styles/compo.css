@@ -65,3 +65,14 @@
   padding:10pt;
   margin-bottom: 20pt;
 }
+
+
+.split-box{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.remove_btn{
+  border: 0px;
+}

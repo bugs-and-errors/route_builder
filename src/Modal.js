@@ -7,19 +7,45 @@ export default function Modals({ toggleModal, push }) {
   const [NodeType, setNodeType] = useState("")
 
   const handleOk = () => {
+    if (Id !== "" && NodeType !== "") {
+      if (NodeType === "start") {
+        push({
+          id: Id,
+          type: 'input',
+          data: {
+            label: <div className="split-box">
+              {Id}
+              <button className="remove_btn">x</button>
+            </div>
+          },
+          position: { x: 0, y: 0 },
+        })
+      } else if (NodeType === "end") {
+        push({
+          id: Id,
+          type: 'output',
+          data: {
+            label: <div>
+              {Id}
+              <button className="remove_btn">x</button>
+            </div>
+          },
+          position: { x: 0, y: 0 },
+        })
+      } else {
+        push({
+          id: Id,
+          data: {
+            label: <div>
+              {Id}
+              <button className="remove_btn">x</button>
+            </div>
+          },
+          position: { x: 0, y: 0 },
+        })
+      }
 
-    push({
-      id: Id,
-      type: 'input',
-      data: {
-        label: <div>
-          {Id}
-          <button>x</button>
-        </div>
-      },
-      position: { x: 0, y: 0 },
-    })
-
+    }
     handleCancel()
   }
 

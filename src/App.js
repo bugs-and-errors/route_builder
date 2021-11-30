@@ -62,12 +62,13 @@ const App = () => {
 
       {openModal && <Modals toggleModal={toggleModal} push={push} />}
 
-      <ReactFlow
-        elements={elements}
-        onElementsRemove={onElementsRemove}
-        onConnect={onConnect}
-        deleteKeyCode={46} /* 'delete'-key */
-      />
+      {!openModal &&
+        <ReactFlow
+          elements={elements}
+          onElementsRemove={onElementsRemove}
+          onConnect={onConnect}
+          deleteKeyCode={46} /* 'delete'-key */
+        />}
     </div>
   );
 };
