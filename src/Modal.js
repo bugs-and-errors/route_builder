@@ -3,7 +3,7 @@ import { IoCloseCircleOutline } from "react-icons/io5"
 
 export default function Modals({ toggleModal, push, Remove }) {
 
-  const [Id, setId] = useState("")
+  const [Id, setId] = useState(0)
   const [NodeType, setNodeType] = useState("")
 
   const handleOk = () => {
@@ -65,7 +65,7 @@ export default function Modals({ toggleModal, push, Remove }) {
     <div className="modal_design_back">
       <div className="modal">
         <h3 className="modal-title">Add Node</h3>
-        <input placeholder="Node ID/Name" className="modal_ip" value={Id} onChange={e => setId(e.target.value)} />
+        <input placeholder="Node ID/Name" type="number" className="modal_ip" value={Id} onChange={e => setId(e.target.value)} />
 
         <select placeholder="Node Type" className="modal_ip" value={NodeType} onChange={e => setNodeType(e.target.value)}>
           {NodeType === "" && <option>Select a Node Type</option>}

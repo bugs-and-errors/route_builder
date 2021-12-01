@@ -51,11 +51,11 @@ const App = () => {
         style={{ width: "fit-content", position: "relative", margin: "10pt" }}
         className="btn">ADD BLOCK</button>
 
-      <CSVLink data={CSV_Data}>
+      {prev_succ?.length > 0 && <CSVLink data={CSV_Data}>
         <button
           style={{ width: "fit-content", position: "relative", margin: "10pt", marginLeft: "0px" }}
           className="btn">Download Excel</button>
-      </CSVLink>
+      </CSVLink>}
 
       {openModal && <Modals toggleModal={toggleModal} push={push} Remove={Remove} />}
 
