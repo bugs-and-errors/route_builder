@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReactFlow, { removeElements, addEdge } from 'react-flow-renderer';
+import { CSVLink, CSVDownload } from "react-csv";
 import Modals from "./Modal"
 
 const App = () => {
@@ -40,7 +41,8 @@ const App = () => {
     setprev_succ(x.filter(v => v?.succ !== id || v?.prev !== id))
   }
 
-  console.log(prev_succ)
+  const CSV_Data = [["Predecessor", "Successor"], ...prev_succ?.map(v => { return [v?.prev, v?.succ] })]
+
   return (
     <div style={{ height: "100vh" }}>
 
@@ -48,6 +50,12 @@ const App = () => {
         onClick={toggleModal}
         style={{ width: "fit-content", position: "relative", margin: "10pt" }}
         className="btn">ADD BLOCK</button>
+
+      <CSVLink data={CSV_Data}>
+        <button
+          style={{ width: "fit-content", position: "relative", margin: "10pt", marginLeft: "0px" }}
+          className="btn">Download Excel</button>
+      </CSVLink>
 
       {openModal && <Modals toggleModal={toggleModal} push={push} Remove={Remove} />}
 
