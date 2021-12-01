@@ -45,11 +45,19 @@ const App = () => {
 
   return (
     <div style={{ height: "100vh" }}>
-
+      <br />
       <button
         onClick={toggleModal}
         style={{ width: "fit-content", position: "relative", margin: "10pt" }}
         className="btn">ADD BLOCK</button>
+
+      <button
+        onClick={() => {
+          setprev_succ([])
+          setElements([])
+        }}
+        style={{ width: "fit-content", position: "relative", marginRight: "10pt" }}
+        className="btn">Clear Slate</button>
 
       {prev_succ?.length > 0 && <CSVLink data={CSV_Data}>
         <button
@@ -57,6 +65,7 @@ const App = () => {
           className="btn">Download Excel</button>
       </CSVLink>}
 
+      <br />
       {openModal && <Modals toggleModal={toggleModal} push={push} Remove={Remove} />}
 
       {!openModal &&
