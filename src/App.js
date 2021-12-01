@@ -33,13 +33,21 @@ import Modals from "./Modal"
 const App = () => {
   const [elements, setElements] = useState([]);
   const [openModal, setopenModal] = useState(false)
+  const [prev_succ, setprev_succ] = useState([])
 
   const onElementsRemove = (elementsToRemove) =>
     setElements((els) => removeElements(elementsToRemove, els));
 
-  const onConnect = (params) => setElements((els) => addEdge(params, els));
+  const onConnect = (params) => {
 
-  console.log(elements)
+    // prev and successor track
+    const x = [...prev_succ]
+    x.push({ prev: params?.source, succ: params?.target })
+    setprev_succ(x)
+
+    // flow chart track
+    setElements((els) => addEdge(params, els))
+  };
 
   const toggleModal = () => {
     setopenModal(!openModal)
@@ -55,8 +63,12 @@ const App = () => {
   const Remove = (id) => {
     const ele = [...elements]
     setElements(ele?.filter(e => e?.id !== id))
+
+    const x = [...prev_succ]
+    setprev_succ(x.filter(v => v?.succ !== id || v?.prev !== id))
   }
 
+  console.log(prev_succ)
   return (
     <div style={{ height: "100vh" }}>
 
