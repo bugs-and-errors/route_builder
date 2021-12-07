@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReactFlow, { removeElements, addEdge } from 'react-flow-renderer';
 import { CSVLink } from "react-csv";
 import Modals from "./Modal"
+import { get_possible_endpoints } from "./functions"
 
 const App = () => {
   const [elements, setElements] = useState([]);
@@ -18,6 +19,9 @@ const App = () => {
     x.push({ prev: params?.source, succ: params?.target })
     setprev_succ(x)
 
+    // flow tracker
+    const possible_endpoints = get_possible_endpoints(prev_succ, elements, { prev: params?.source, succ: params?.target })
+
     // flow chart track
     params = { ...params }
     params["animated"] = true
@@ -29,7 +33,6 @@ const App = () => {
   }
 
   const push = (e) => {
-    console.log(e)
     const ele = [...elements]
     ele.push(e)
     setElements(ele)
