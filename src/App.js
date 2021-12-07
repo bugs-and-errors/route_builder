@@ -19,6 +19,8 @@ const App = () => {
     setprev_succ(x)
 
     // flow chart track
+    params = { ...params }
+    params["animated"] = true
     setElements((els) => addEdge(params, els))
   };
 
