@@ -23,7 +23,8 @@ const get_possible_endpoints = (joints, nodes, connect_val) => {
 
     }
   }
-  console.log(lst_of_pred)
+  // console.log(lst_of_pred)
+  return lst_of_pred
 }
 
 

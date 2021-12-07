@@ -9,6 +9,8 @@ const App = () => {
   const [openModal, setopenModal] = useState(false)
   const [prev_succ, setprev_succ] = useState([])
 
+  const [skipState, setskipState] = useState([])
+
   const onElementsRemove = (elementsToRemove) =>
     setElements((els) => removeElements(elementsToRemove, els));
 
@@ -21,6 +23,8 @@ const App = () => {
 
     // flow tracker
     const possible_endpoints = get_possible_endpoints(prev_succ, elements, { prev: params?.source, succ: params?.target })
+    let skip = [...skipState, ...possible_endpoints]
+    setskipState(skip)
 
     // flow chart track
     params = { ...params }
@@ -47,6 +51,7 @@ const App = () => {
   }
 
   const CSV_Data = [["Predecessor", "Successor"], ...prev_succ?.map(v => { return [v?.prev, v?.succ] })]
+  const skip_CSV_Data = [["Predecessor", "Successor"], ...skipState?.map(v => { return [v?.prev, v?.succ] })]
 
   return (
     <div style={{ height: "100vh" }}>
@@ -67,7 +72,13 @@ const App = () => {
       {prev_succ?.length > 0 && <CSVLink data={CSV_Data}>
         <button
           style={{ width: "fit-content", position: "relative", margin: "10pt", marginLeft: "0px" }}
-          className="btn">Download Excel</button>
+          className="btn">Download Excel For No Skip</button>
+      </CSVLink>}
+
+      {prev_succ?.length > 0 && <CSVLink data={skip_CSV_Data}>
+        <button
+          style={{ width: "fit-content", position: "relative", margin: "10pt", marginLeft: "0px" }}
+          className="btn">Download Excel For Skip</button>
       </CSVLink>}
 
       <br />
