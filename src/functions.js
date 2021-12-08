@@ -28,4 +28,21 @@ const get_possible_endpoints = (joints, nodes, connect_val) => {
 }
 
 
-export { get_possible_endpoints }
+const unique_vals = (skipState) => {
+  const new_arr = []
+  for (let i = 0; i < skipState.length; i++) {
+    const prev = skipState[i]?.prev
+    const succ = skipState[i]?.succ
+
+    const includes = new_arr?.filter(v => v?.prev === prev && v?.succ === succ)
+    if (includes.length > 0) {
+      continue
+    } else {
+      new_arr.push(skipState[i])
+    }
+
+  }
+  return new_arr
+}
+
+export { get_possible_endpoints, unique_vals }

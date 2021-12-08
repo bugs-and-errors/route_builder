@@ -18,12 +18,13 @@
 
 .modal{
   background:white;
-  width:50vw;
-  height:300pt;
+  /* width:50vw; */
+  /* height:300pt; */
   border-radius: 5pt;
   position: relative;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 
@@ -34,13 +35,15 @@
   border: 1px solid rgba(0,0,0,0.5);
   border-radius: 4pt;
   color: rgba(0,0,0,0.8);
-  position:absolute;
-  bottom: 10px;
-  right: 10px;
+  /* position:absolute; */
+  /* bottom: 10px; */
+  /* right: 10px; */
   cursor: pointer;
   text-align: center;
   width: 50pt;
   z-index: 1;
+  width:200pt;
+  margin-right: 10pt;
 }
 
 .btn:hover{
@@ -50,11 +53,12 @@
 
 .modal_ip{
   padding: 10pt;
-  width: 80%;
-  margin: 10pt auto;
+  width: 50%;
+  margin: 10pt;
   border-radius: 5pt;
   outline: none;
   border: 1px solid rgba(0,0,0,0.3);
+
 }
 
 .modal-title{

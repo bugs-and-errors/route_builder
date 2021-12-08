@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { IoCloseCircleOutline } from "react-icons/io5"
 
-export default function Modals({ toggleModal, push, Remove }) {
+export default function Modals({ toggleModal, push, Remove, setprev_succ, setElements }) {
 
   const [Id, setId] = useState(0)
   const [NodeType, setNodeType] = useState("")
@@ -62,9 +62,10 @@ export default function Modals({ toggleModal, push, Remove }) {
   }
 
   return (
-    <div className="modal_design_back">
+    // className="modal_design_back"
+    <div >
       <div className="modal">
-        <h3 className="modal-title">Add Node</h3>
+        {/* <h3 className="modal-title">Add Node</h3> */}
         <input placeholder="Node ID/Name" type="number" className="modal_ip" value={Id} onChange={e => setId(e.target.value)} />
 
         <select placeholder="Node Type" className="modal_ip" value={NodeType} onChange={e => setNodeType(e.target.value)}>
@@ -74,8 +75,16 @@ export default function Modals({ toggleModal, push, Remove }) {
           <option value="end">End</option>
         </select>
 
-        <button className="btn" onClick={handleOk} style={{ right: "60pt" }}>OK</button>
-        <button className="btn" onClick={handleCancel}>Close</button>
+        <button className="btn" onClick={handleOk} style={{ right: "60pt" }}>Add</button>
+
+        <button
+          onClick={() => {
+            setprev_succ([])
+            setElements([])
+          }}
+          style={{ position: "relative", marginRight: "10pt" }}
+          className="btn">Clear Slate</button>
+        {/* <button className="btn" onClick={handleCancel}>Close</button> */}
       </div>
     </div>
   )

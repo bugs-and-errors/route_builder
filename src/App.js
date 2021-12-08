@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactFlow, { removeElements, addEdge } from 'react-flow-renderer';
 import { CSVLink } from "react-csv";
 import Modals from "./Modal"
-import { get_possible_endpoints } from "./functions"
+import { get_possible_endpoints, unique_vals } from "./functions"
 
 const App = () => {
   const [elements, setElements] = useState([]);
@@ -50,47 +50,45 @@ const App = () => {
     setprev_succ(x.filter(v => v?.succ !== id || v?.prev !== id))
   }
 
+  const skip_data = unique_vals(skipState)
+
   const CSV_Data = [["Predecessor", "Successor"], ...prev_succ?.map(v => { return [v?.prev, v?.succ] })]
-  const skip_CSV_Data = [["Predecessor", "Successor"], ...skipState?.map(v => { return [v?.prev, v?.succ] })]
+  const skip_CSV_Data = [["Predecessor", "Successor"], ...skip_data?.map(v => { return [v?.prev, v?.succ] })]
+
+
+
+
 
   return (
     <div style={{ height: "100vh" }}>
       <br />
-      <button
-        onClick={toggleModal}
-        style={{ width: "fit-content", position: "relative", margin: "10pt" }}
-        className="btn">ADD BLOCK</button>
 
-      <button
-        onClick={() => {
-          setprev_succ([])
-          setElements([])
-        }}
-        style={{ width: "fit-content", position: "relative", marginRight: "10pt" }}
-        className="btn">Clear Slate</button>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <Modals toggleModal={toggleModal} push={push} Remove={Remove} setElements={setElements} setprev_succ={setprev_succ} />
 
-      {prev_succ?.length > 0 && <CSVLink data={CSV_Data}>
-        <button
-          style={{ width: "fit-content", position: "relative", margin: "10pt", marginLeft: "0px" }}
-          className="btn">Download Excel For No Skip</button>
-      </CSVLink>}
+        <div style={{ float: "right", marginRight: "10pt" }}>
+          {prev_succ?.length > 0 && <CSVLink data={CSV_Data}>
+            <button
+              style={{ width: "fit-content", position: "relative", margin: "10pt", marginLeft: "0px" }}
+              className="btn">Download Excel For No Skip</button>
+          </CSVLink>}
 
-      {prev_succ?.length > 0 && <CSVLink data={skip_CSV_Data}>
-        <button
-          style={{ width: "fit-content", position: "relative", margin: "10pt", marginLeft: "0px" }}
-          className="btn">Download Excel For Skip</button>
-      </CSVLink>}
+          {prev_succ?.length > 0 && <CSVLink data={skip_CSV_Data}>
+            <button
+              style={{ width: "fit-content", position: "relative", margin: "10pt", marginLeft: "0px" }}
+              className="btn">Download Excel For Skip</button>
+          </CSVLink>}
+        </div>
 
-      <br />
-      {openModal && <Modals toggleModal={toggleModal} push={push} Remove={Remove} />}
+      </div>
 
-      {!openModal &&
-        <ReactFlow
-          elements={elements}
-          onElementsRemove={onElementsRemove}
-          onConnect={onConnect}
-          deleteKeyCode={46} /* 'delete'-key */
-        />}
+      <ReactFlow
+        elements={elements}
+        onElementsRemove={onElementsRemove}
+        onConnect={onConnect}
+        deleteKeyCode={46} /* 'delete'-key */
+      />
+      {/* } */}
     </div>
   );
 };
