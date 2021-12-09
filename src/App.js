@@ -29,6 +29,7 @@ const App = () => {
     // flow chart track
     params = { ...params }
     params["animated"] = true
+    params["arrowHeadType"] = "arrow"
     setElements((els) => addEdge(params, els))
   };
 
