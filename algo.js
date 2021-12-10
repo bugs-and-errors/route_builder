@@ -21,7 +21,7 @@ const create_new_node = (node_name) => {
 
 const create_route = (source, destination) => {
   adjacencyList.get(source).push(destination)
-  adjacencyList.get(destination).push(source)
+  // adjacencyList.get(destination).push(source)
 }
 
 
@@ -30,3 +30,33 @@ paths.forEach(path => create_route(...path))
 
 
 console.log(adjacencyList)
+
+function bfs(start) {
+
+  const visited = new Set()
+
+  const queue = [start]
+
+  while (queue.length > 0) {
+
+    const node = queue.shift()
+
+    const destinations = adjacencyList.get(node)
+
+    for (const destination of destinations) {
+
+      if (!visited.has(destination)) {
+        queue.push(destination)
+        visited.add(destination)
+      }
+
+      if (destination === '40') {
+        console.log(destination, visited)
+      }
+
+    }
+  }
+
+}
+
+bfs('1')
