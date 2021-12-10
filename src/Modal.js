@@ -12,6 +12,8 @@ export default function Modals({ toggleModal, push, Remove, setprev_succ, setEle
         push({
           id: Id,
           type: 'input',
+          sourcePosition: 'right',
+          targetPosition: 'left',
           data: {
             label: <div className="split-box">
               {Id}
@@ -26,6 +28,8 @@ export default function Modals({ toggleModal, push, Remove, setprev_succ, setEle
         push({
           id: Id,
           type: 'output',
+          sourcePosition: 'right',
+          targetPosition: 'left',
           data: {
             label: <div className="split-box">
               {Id}
@@ -40,6 +44,8 @@ export default function Modals({ toggleModal, push, Remove, setprev_succ, setEle
       } else {
         push({
           id: Id,
+          sourcePosition: 'right',
+          targetPosition: 'left',
           data: {
             label: <div className="split-box">
               {Id}
