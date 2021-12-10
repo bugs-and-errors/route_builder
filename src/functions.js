@@ -1,5 +1,6 @@
 let get_pred_nodes = (sr, joints) => joints?.filter(v => {
   const succ = parseInt(v?.succ)
+  const prev = parseInt(v?.prev)
   return succ === parseInt(sr)
 })
 
