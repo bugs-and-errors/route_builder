@@ -14,6 +14,8 @@ const App = () => {
   const onElementsRemove = (elementsToRemove) =>
     setElements((els) => removeElements(elementsToRemove, els));
 
+
+  // console.log(prev_succ)
   const onConnect = (params) => {
 
     // prev and successor track
