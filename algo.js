@@ -1,6 +1,6 @@
 const nodes = "1 10 20 30 40 50 60 70 80".split(" ")
 
-const path = [
+const paths = [
   ["1", "10"],
   ["10", "20"],
   ["10", "30"],
@@ -25,3 +25,8 @@ const create_route = (source, destination) => {
 }
 
 
+nodes.forEach(create_new_node)
+paths.forEach(path => create_route(...path))
+
+
+console.log(adjacencyList)
