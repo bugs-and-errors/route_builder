@@ -6,12 +6,8 @@ let get_pred_nodes = (sr, joints) => joints?.filter(v => {
 
 
 const get_possible_endpoints = (joints, nodes, connect_val) => {
-  // console.log(joints, nodes, connect_val)
 
   const lst_of_pred = [connect_val]
-
-  let target = connect_val?.succ
-  let src = connect_val?.prev
 
   const queue = [connect_val]
 
