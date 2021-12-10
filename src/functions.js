@@ -7,7 +7,7 @@ let get_pred_nodes = (sr, joints) => joints?.filter(v => {
 
 const get_possible_endpoints = (joints, nodes, connect_val) => {
 
-  const lst_of_pred = [connect_val]
+  let lst_of_pred = [connect_val]
 
   const queue = [connect_val]
 
@@ -18,7 +18,7 @@ const get_possible_endpoints = (joints, nodes, connect_val) => {
     queue.push(...get_pred_node)
     lst_of_pred.push(...get_pred_node)
   }
-
+  lst_of_pred = lst_of_pred.map(v => { return { prev: v?.prev, succ: connect_val?.succ } })
   return lst_of_pred
 }
 
