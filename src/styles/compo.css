@@ -86,3 +86,8 @@ path.react-flow__edge-path {
 .remove_btn{
   border: 0px;
 }
+
+.flow_chart_parent{
+  height: 100%;width: 98%;margin: auto;
+  border: 1px solid;
+}

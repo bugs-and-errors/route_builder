@@ -40,4 +40,4 @@ const unique_vals = (skipState) => {
   return new_arr
 }
 
-export { get_possible_endpoints, unique_vals }
+export { get_possible_endpoints, unique_vals, get_pred_nodes }
