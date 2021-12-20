@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactFlow, { removeElements, addEdge } from 'react-flow-renderer';
 import { CSVLink } from "react-csv";
 import Modals from "./Modal"
-import { get_possible_endpoints, unique_vals, get_pred_nodes } from "./functions"
+import { unique_vals, skip_logic } from "./functions"
 
 const App = () => {
   const [elements, setElements] = useState([]);
@@ -68,33 +68,7 @@ const App = () => {
           <button
             style={{ width: "fit-content", position: "relative", margin: "10pt", marginLeft: "0px" }}
             className="btn"
-            onClick={() => {
-              const nodes = []
-              const skip_data = []
-              elements?.forEach(v => {
-                if (v?.id?.split("__")[0] !== "reactflow") {
-                  nodes.push(v?.id)
-                }
-              })
-
-              for (let node_id of nodes) {
-
-                const nodes = prev_succ?.filter(v => v?.prev === node_id)
-                const visited = [...nodes]
-                const queue = [...nodes]
-
-                while (queue.length > 0) {
-                  const current_node = queue.shift()
-                  const succesive_nodes = prev_succ?.filter(v => v?.prev === current_node?.succ)
-
-                  queue.push(...succesive_nodes)
-                  visited.push(...succesive_nodes)
-                }
-                skip_data.push(...visited?.map(v => { return { prev: node_id, succ: v?.succ } }))
-              }
-              setskipState(skip_data)
-              setskipcal(true)
-            }}
+            onClick={() => skip_logic(elements, prev_succ, setskipState, setskipcal)}
 
           >Calculate Skip</button>
 
@@ -133,30 +107,3 @@ export default App;
 
 
 
-
-//   () => {
-          //   // console.log(prev_succ, elements)
-          //   const start_nodes = []
-          //   elements?.forEach(v => { if (v?.type === "input") { start_nodes.push(v?.id) } })
-
-          //   const ele = {}
-
-          //   for (let x of start_nodes) {
-          //     const nodes = prev_succ?.filter(v => v?.prev === x)
-          //     const visited = [...nodes]
-          //     const queue = [...nodes]
-
-          //     while (queue.length > 0) {
-          //       const current_node = queue.shift()
-          //       const succesive_nodes = prev_succ?.filter(v => v?.prev === current_node?.succ)
-          //       // console.log(succesive_nodes)
-          //       queue.push(...succesive_nodes)
-          //       visited.push(...succesive_nodes)
-          //     }
-
-          //     const full_path = visited?.map(v => { return { prev: x, succ: v?.succ } })
-
-          //     ele[x] = full_path
-          //   }
-          //   console.log(ele)
-          // }}

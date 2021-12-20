@@ -40,4 +40,33 @@ const unique_vals = (skipState) => {
   return new_arr
 }
 
-export { get_possible_endpoints, unique_vals, get_pred_nodes }
+
+const skip_logic = (elements, prev_succ, setskipState, setskipcal) => {
+  const nodes = []
+  const skip_data = []
+  elements?.forEach(v => {
+    if (v?.id?.split("__")[0] !== "reactflow") {
+      nodes.push(v?.id)
+    }
+  })
+
+  for (let node_id of nodes) {
+
+    const nodes = prev_succ?.filter(v => v?.prev === node_id)
+    const visited = [...nodes]
+    const queue = [...nodes]
+
+    while (queue.length > 0) {
+      const current_node = queue.shift()
+      const succesive_nodes = prev_succ?.filter(v => v?.prev === current_node?.succ)
+
+      queue.push(...succesive_nodes)
+      visited.push(...succesive_nodes)
+    }
+    skip_data.push(...visited?.map(v => { return { prev: node_id, succ: v?.succ } }))
+  }
+  setskipState(skip_data)
+  setskipcal(true)
+}
+
+export { get_possible_endpoints, unique_vals, get_pred_nodes, skip_logic }
