@@ -120,3 +120,26 @@ path.react-flow__edge-path {
     mix-blend-mode: exclusion;
     margin-bottom:20pt
 }
+
+.bottom_bar{
+  position: fixed;
+  bottom: 0;
+  left: 92pt;
+  width: 100vw;
+  background: #242424;
+  display: flex;
+}
+
+.bottom_btn{
+  background: none;
+  outline: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 5pt;
+  font-family: sans-serif;
+  font-weight: 500;
+  border-right: 1px solid white;
+  width: fit-content;
+  
+}

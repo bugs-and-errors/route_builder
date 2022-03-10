@@ -78,7 +78,7 @@ const App = () => {
         </div>
 
         <div className="btn">
-          <VscSave className="icon_z" />
+          <VscSaveAs className="icon_z" />
           Save As
         </div>
 
@@ -135,6 +135,15 @@ const App = () => {
         />
       </div>
 
+
+      <div className="bottom_bar">
+        <div className="bottom_btn" style={{ marginLeft: "10pt" }}>Gantt</div>
+        <div className="bottom_btn">Orders</div>
+        <div className="bottom_btn">Inventory</div>
+        <div className="bottom_btn">Purchases</div>
+        <div className="bottom_btn">Reports</div>
+        <div className="bottom_btn" style={{ background: "#00b1db", border: "0px" }}>Route Builder</div>
+      </div>
     </div>
   );
 };
