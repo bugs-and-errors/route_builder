@@ -3,6 +3,10 @@ import ReactFlow, { removeElements, addEdge } from 'react-flow-renderer';
 import { CSVLink } from "react-csv";
 import Modals from "./Modal"
 import { unique_vals, skip_logic } from "./functions"
+import { AiOutlineCalculator, AiOutlineClear } from "react-icons/ai"
+import { VscSave, VscSaveAs } from "react-icons/vsc"
+import { BsFillSkipForwardFill, BsDownload } from "react-icons/bs"
+import logo from "./logo.jpg"
 
 const App = () => {
   const [elements, setElements] = useState([]);
@@ -57,36 +61,68 @@ const App = () => {
 
 
   return (
-    <div style={{ height: "100vh" }}>
-      <br />
+    <div
+      className="root"
 
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+    >
+
+      <div
+        className="sidebar"
+      >
+
+        <img src={logo} alt="" className="logo" />
+
+        <div className="btn">
+          <VscSave className="icon_z" />
+          Save
+        </div>
+
+        <div className="btn">
+          <VscSave className="icon_z" />
+          Save As
+        </div>
+
+        <button
+          className="btn"
+          onClick={() => skip_logic(elements, prev_succ, setskipState, setskipcal)}
+        >
+          <AiOutlineCalculator className="icon_z" />
+          Calculate</button>
+
+        {prev_succ?.length > 0 && <CSVLink data={CSV_Data}>
+          <button
+            className="btn"
+          >
+            <BsDownload className="icon_z" />
+            No Skip</button>
+        </CSVLink>}
+
+
+
+
+        {prev_succ?.length > 0 && skipcal && <CSVLink data={skip_CSV_Data}>
+          <button
+            onClick={() => { setskipcal(false) }}
+            className="btn">
+            <BsFillSkipForwardFill className="icon_z" />
+            Skip</button>
+        </CSVLink>}
+
+        <button
+          onClick={() => {
+            setprev_succ([])
+            setElements([])
+          }}
+          className="btn">
+          <AiOutlineClear className="icon_z" />
+          Clear
+        </button>
+        <br />
         <Modals toggleModal={toggleModal} push={push} Remove={Remove} setElements={setElements} setprev_succ={setprev_succ} />
 
         <div style={{ float: "right", marginRight: "10pt" }}>
 
-          <button
-            style={{ width: "fit-content", position: "relative", margin: "10pt", marginLeft: "0px" }}
-            className="btn"
-            onClick={() => skip_logic(elements, prev_succ, setskipState, setskipcal)}
 
-          >Calculate Skip</button>
-
-          {prev_succ?.length > 0 && <CSVLink data={CSV_Data}>
-            <button
-              style={{ width: "fit-content", position: "relative", margin: "10pt", marginLeft: "0px" }}
-              className="btn">Download No Skip</button>
-          </CSVLink>}
-
-
-
-
-          {prev_succ?.length > 0 && skipcal && <CSVLink data={skip_CSV_Data}>
-            <button
-              onClick={() => { setskipcal(false) }}
-              style={{ width: "fit-content", position: "relative", margin: "10pt", marginLeft: "0px" }}
-              className="btn">Download Skip</button>
-          </CSVLink>}
         </div>
 
       </div>

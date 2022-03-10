@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { IoCloseCircleOutline } from "react-icons/io5"
 
+import { AiOutlineSubnode, AiOutlineNodeIndex } from "react-icons/ai"
+import { BsNodeMinusFill } from "react-icons/bs"
+
 export default function Modals({ toggleModal, push, Remove, setprev_succ, setElements }) {
 
   const [Id, setId] = useState(0)
@@ -67,29 +70,103 @@ export default function Modals({ toggleModal, push, Remove, setprev_succ, setEle
     setNodeType("")
   }
 
+
+  const Start = () => {
+    if (Id !== "") {
+      push({
+        id: Id,
+        type: 'input',
+        sourcePosition: 'right',
+        targetPosition: 'left',
+        data: {
+          label: <div className="split-box">
+            {Id}
+            <button className="remove_btn"
+              onClick={() => { Remove(Id) }}
+            ><IoCloseCircleOutline /></button>
+          </div>
+        },
+        position: { x: 0, y: 0 },
+      })
+    }
+    handleCancel()
+  }
+
+  const Node = () => {
+    if (Id !== "") {
+      push({
+        id: Id,
+        sourcePosition: 'right',
+        targetPosition: 'left',
+        data: {
+          label: <div className="split-box">
+            {Id}
+            <button
+              onClick={() => { Remove(Id) }}
+              className="remove_btn"><IoCloseCircleOutline /></button>
+          </div>
+        },
+        position: { x: 0, y: 0 },
+      })
+    }
+    handleCancel()
+  }
+
+  const End = () => {
+    if (Id !== "") {
+      push({
+        id: Id,
+        type: 'output',
+        sourcePosition: 'right',
+        targetPosition: 'left',
+        data: {
+          label: <div className="split-box">
+            {Id}
+            <button
+              className="remove_btn"
+              onClick={() => { Remove(Id) }}
+            ><IoCloseCircleOutline /></button>
+          </div>
+        },
+        position: { x: 0, y: 0 },
+      })
+    }
+  }
   return (
-    // className="modal_design_back"
-    <div >
+
+    <div className="top">
       <div className="modal">
-        {/* <h3 className="modal-title">Add Node</h3> */}
+
+
+
+
         <input placeholder="Node ID/Name" type="number" className="modal_ip" value={Id} onChange={e => setId(e.target.value)} />
 
-        <select placeholder="Node Type" className="modal_ip" value={NodeType} onChange={e => setNodeType(e.target.value)}>
-          {NodeType === "" && <option>Select a Node Type</option>}
-          <option value="start">Start</option>
-          <option value="node">Node</option>
-          <option value="end">End</option>
-        </select>
-
-        <button className="btn" onClick={handleOk} style={{ right: "60pt" }}>Add</button>
+        <button
+          className="btn"
+          onClick={Start}>
+          <AiOutlineSubnode className="icon_z" />
+          Start
+        </button>
 
         <button
-          onClick={() => {
-            setprev_succ([])
-            setElements([])
-          }}
-          style={{ position: "relative", marginRight: "10pt" }}
-          className="btn">Clear Slate</button>
+          className="btn"
+          onClick={End}>
+          <BsNodeMinusFill className="icon_z" />
+          End
+        </button>
+
+        <button
+          className="btn"
+          onClick={Node}>
+          <AiOutlineNodeIndex className="icon_z" />
+          Node
+        </button>
+
+
+
+
+
         {/* <button className="btn" onClick={handleCancel}>Close</button> */}
       </div>
     </div>
